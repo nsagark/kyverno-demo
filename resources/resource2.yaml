@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ghost-with-readonly-rootfilesystem
+  namespace: test
+spec:
+  containers:
+  - name: ghost
+    image: ghost
+    securityContext:
+      readOnlyRootFilesystem: false
+root@ip-172-31-81-194:~/build-process/resources# cat resource2.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.12
