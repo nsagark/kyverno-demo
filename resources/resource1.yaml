@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ghost-with-readonly-rootfilesystem
+  namespace: test
+spec:
+  containers:
+  - name: ghost
+    image: ghost
+    securityContext:
+      readOnlyRootFilesystem: false
