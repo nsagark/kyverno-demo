@@ -22,8 +22,8 @@ done
 echo
 echo
 
-printf "%-50s %-20s %-30s %-30s %-30s %-30s\n" "RESOURCE_NAME" "KIND" "NAMESPACE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
-seq -s- 150|tr -d '[:digit:]'
+printf "%-50s %-20s %-20s %-20s %-20s %-20s\n" "RESOURCE_NAME" "KIND" "NAMESPACE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
+seq -s- 100|tr -d '[:digit:]'
 
 if [[ -s $TEMP_FILE ]]; then
         while read -r line
