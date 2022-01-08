@@ -29,6 +29,7 @@ seq -s- 100|tr -d '[:digit:]'
 if [[ -s $TEMP_FILE ]]; then
         while read -r line
         do
+                set -x
                 POLICY=$(echo $line | awk '{print $2}')
                 RESOURCE=$(echo $line | awk '{ print $NF}')
                 NAMESPACE=$(echo $RESOURCE | awk -F/ '{ print $1}')
