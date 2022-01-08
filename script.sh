@@ -4,7 +4,7 @@ RESOURCE_YAMLS=$(ls resources)
 POLICY_YAMLS=$(ls policies)
 TEMP_FILE=/tmp/temp.txt
 #echo $RESOURCE_YAMLS
-###echo $POLICY_YAMLS
+#echo $POLICY_YAMLS
 rm -f /tmp/temp.txt
 
 # Install kyverno CLI
