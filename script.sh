@@ -7,6 +7,9 @@ TEMP_FILE=/tmp/temp.txt
 #echo $POLICY_YAMLS
 rm -f /tmp/temp.txt
 
+# Install kyverno CLI
+./install-kycli.sh
+
 for i in $POLICY_YAMLS
 do
         for j in $RESOURCE_YAMLS
