@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: ghost-with-readonly-rootfilesystem
-  namespace: test
+  namespace: random
 spec:
   containers:
   - name: ghost
