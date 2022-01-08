@@ -22,7 +22,8 @@ done
 echo
 echo
 
-printf "%-50s %-20s %-20s %-20s %-20s %-20s\n" "RESOURCE_NAME" "KIND" "NAMESPACE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
+#printf "%-50s %-20s %-20s %-20s %-20s %-20s\n" "RESOURCE_NAME" "KIND" "NAMESPACE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
+printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
 seq -s- 100|tr -d '[:digit:]'
 
 if [[ -s $TEMP_FILE ]]; then
@@ -36,8 +37,8 @@ if [[ -s $TEMP_FILE ]]; then
                 POLICY_YAML_FILE=$(grep -l $POLICY policies/*.yaml | awk -F/ '{ print $NF}')
                 RESOURCE_YAML_FILE=$(grep -l $RESOURCE_NAME resources/*.yaml | awk -F/ '{ print $NF}')
                 #printf "${GREEN}%-40s %-10s${NC}\n" "$3" "PASS"
-                printf "%-50s %-20s %-30s %-30s %-30s %-30s\n" "$RESOURCE_NAME" "$KIND" "$NAMESPACE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
-                #echo -e "$POLICY\t$NAMESPACE\t$KIND\t$RESOURCE_NAME\t$POLICY_YAML_FILE\t$RESOURCE_YAML_FILE"
+                #printf "%-50s %-20s %-30s %-30s %-30s %-30s\n" "$RESOURCE_NAME" "$KIND" "$NAMESPACE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
+                printf "%-50s %-30s %-30s\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
         done < $TEMP_FILE
 fi
 
