@@ -10,7 +10,7 @@ E_DISTRO=sagar@nirmata.com
 rm -f /tmp/temp.txt
 
 # Install kyverno CLI
-./install-kycli.sh
+#./install-kycli.sh
 
 printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE" > $OUTPUT_FILE
 seq -s- 100|tr -d '[:digit:]' >> $OUTPUT_FILE
