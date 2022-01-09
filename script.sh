@@ -26,11 +26,7 @@ echo
 
 echo -e "The resources that have failed the kyverno policies are listed below along with the policy and resource YAML files.\nNOTE: The RESOURCE below has the following format: NAMESPACE/KIND/RESOURCE_NAME\n\n"
 
-RED='\033[0;31m'
-NC='\033[0m' # No Color
-GREEN='\033[0;32m'
-#printf "${GREEN}%-40s %-10s${NC}\n" "$3" "PASS"
-printf "${RED}%-50s %-30s %-30s${NC}\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
+printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
 seq -s- 100|tr -d '[:digit:]'
 
 if [[ -s $TEMP_FILE ]]; then
@@ -46,7 +42,7 @@ if [[ -s $TEMP_FILE ]]; then
                 RESOURCE_YAML_FILE=$(grep -l $RESOURCE_NAME resources/*.yaml | awk -F/ '{ print $NF}')
                 #printf "${GREEN}%-40s %-10s${NC}\n" "$3" "PASS"
                 #printf "%-50s %-20s %-30s %-30s %-30s %-30s\n" "$RESOURCE_NAME" "$KIND" "$NAMESPACE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
-                printf "${RED}%-50s %-30s %-30s${NC}\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
+                printf "%-50s %-30s %-30s\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
         done < $TEMP_FILE
 fi
 
