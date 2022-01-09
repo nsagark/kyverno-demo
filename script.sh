@@ -48,6 +48,6 @@ if [[ -s $TEMP_FILE ]]; then
         done < $TEMP_FILE
         cat $OUTPUT_FILE
         EMAIL_BODY="The resource YAML files have failed to validate against the kyverno policies. Please take appropriate actions to update the YAML files"
-        echo $EMAIL_BODY |mutt -s "Pipeline job has failed" $E_DISTRO -a $OUTPUT_FILE
+        mailx -s "Pipeline job has failed" $E_DISTRO  < $OUTPUT_FILE
         exit 1
 fi
