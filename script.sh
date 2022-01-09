@@ -13,7 +13,7 @@ rm -f /tmp/temp.txt
 ./install-kycli.sh
 
 printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE" > $OUTPUT_FILE
-seq -s- 100|tr -d '[:digit:]' > $OUTPUT_FILE
+seq -s- 100|tr -d '[:digit:]' >> $OUTPUT_FILE
 
 for i in $POLICY_YAMLS
 do
@@ -47,10 +47,7 @@ if [[ -s $TEMP_FILE ]]; then
                 printf "%-50s %-30s %-30s\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE" >> $OUTPUT_FILE
         done < $TEMP_FILE
         cat $OUTPUT_FILE
+        EMAIL_BODY="The resource YAML files have failed to validate against the kyverno policies. Please take appropriate actions to update the YAML files"
+        mutt -s "Pipeline job has failed" -a $OUTPUT_FILE -- $E_DISTRO <<< "$EMAIL_BODY"
+        exit 1
 fi
-
-
-
-echo
-echo
-exit 1
