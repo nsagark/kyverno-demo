@@ -18,5 +18,5 @@ make cli
 
 mv ./cmd/cli/kubectl-kyverno/kyverno /usr/local/bin/kyverno
 echo
-echo "Printing kyverno version: "
+echo -e "\nPrinting kyverno version below: "
 kyverno version
