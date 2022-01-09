@@ -24,8 +24,7 @@ echo
 
 #printf "%-50s %-20s %-20s %-20s %-20s %-20s\n" "RESOURCE_NAME" "KIND" "NAMESPACE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
 
-echo -e "The resources that have failed the kyverno policies are listed below along with the policy and resource YAML files.\nNOTE: The RESOURCE below has the following format\nNAMESPACE/KIND/RESOURCE_NAME"
-
+echo -e "The resources that have failed the kyverno policies are listed below along with the policy and resource YAML files.\nNOTE: The RESOURCE below has the following format: NAMESPACE/KIND/RESOURCE_NAME\n\n"
 printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
 seq -s- 100|tr -d '[:digit:]'
 
