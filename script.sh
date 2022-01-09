@@ -3,12 +3,17 @@
 RESOURCE_YAMLS=$(ls resources)
 POLICY_YAMLS=$(ls policies)
 TEMP_FILE=/tmp/temp.txt
+OUTPUT_FILE=/tmp/output.txt
+E_DISTRO=sagar@nirmata.com
 #echo $RESOURCE_YAMLS
 #echo $POLICY_YAMLS
 rm -f /tmp/temp.txt
 
 # Install kyverno CLI
 ./install-kycli.sh
+
+printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE" > $OUTPUT_FILE
+seq -s- 100|tr -d '[:digit:]' > $OUTPUT_FILE
 
 for i in $POLICY_YAMLS
 do
@@ -26,9 +31,6 @@ echo
 
 echo -e "The resources that have failed the kyverno policies are listed below along with the policy and resource YAML files.\nNOTE: The RESOURCE below has the following format: NAMESPACE/KIND/RESOURCE_NAME\n\n"
 
-printf "%-50s %-30s %-30s\n" "RESOURCE" "POLICY_YAML_FILE" "RESOURCE_YAML_FILE"
-seq -s- 100|tr -d '[:digit:]'
-
 if [[ -s $TEMP_FILE ]]; then
         while read -r line
         do
@@ -42,9 +44,12 @@ if [[ -s $TEMP_FILE ]]; then
                 RESOURCE_YAML_FILE=$(grep -l $RESOURCE_NAME resources/*.yaml | awk -F/ '{ print $NF}')
                 #printf "${GREEN}%-40s %-10s${NC}\n" "$3" "PASS"
                 #printf "%-50s %-20s %-30s %-30s %-30s %-30s\n" "$RESOURCE_NAME" "$KIND" "$NAMESPACE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
-                printf "%-50s %-30s %-30s\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE"
+                printf "%-50s %-30s %-30s\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE" >> $OUTPUT_FILE
         done < $TEMP_FILE
+        cat $OUTPUT_FILE
 fi
+
+
 
 echo
 echo
