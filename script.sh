@@ -47,8 +47,8 @@ if [[ -s $TEMP_FILE ]]; then
                 printf "%-50s %-30s %-30s\n" "$RESOURCE" "$POLICY_YAML_FILE" "$RESOURCE_YAML_FILE" >> $OUTPUT_FILE
         done < $TEMP_FILE
         cat $OUTPUT_FILE
-        EMAIL_BODY="The resource YAML files have failed to validate against the kyverno policies. Please take appropriate actions to update the YAML files"
-        mailx -s "Pipeline job has failed" $E_DISTRO  < $OUTPUT_FILE
+        EMAIL_BODY="The resource YAML files that have failed to validate against the kyverno policies are included in the attachment. Please take appropriate actions to update the YAML files"
+        mailx -s "Pipeline job has failed" -a $OUTPUT_FILE -- $E_DISTRO <<< "$EMAIL_BODY"
         echo 
         echo
         exit 1
