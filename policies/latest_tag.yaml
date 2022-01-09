@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: disallow-latest-tag
+  name: disallow-latest-tag1
   annotations:
     policies.kyverno.io/title: Disallow Latest Tag
     policies.kyverno.io/category: Best Practices
