@@ -4,7 +4,7 @@ RESOURCE_YAMLS=$(ls resources)
 POLICY_YAMLS=$(ls policies)
 TEMP_FILE=/tmp/temp.txt
 
-echo -e "RESOURCE\tPOLICY\tRULE_NAME\tSTATUS\tMESSAGE" > /tmp/temp.txt
+echo -e "RESOURCE\tPOLICY_NAME\tRULE_NAME\tSTATUS\tMESSAGE" > /tmp/temp.txt
 
 for i in $POLICY_YAMLS
 do
@@ -17,12 +17,12 @@ do
                 line2=$(cat tempvar.txt | tail -1)
                 if [[ ! -z $line1 ]] && [[ ! -z $line2 ]]; then
 
-                        POLICY=$(echo $line1 | awk '{print $2}')
+                        POLICY_NAME=$(echo $line1 | awk '{print $2}')
                         RESOURCE=$(echo $line1 | awk '{print $5}')
                         STATUS=FAIL
                         RULE_NAME=$(echo $line2 | awk '{print $2}' | sed 's/://g')
                         MESSAGE=$(echo $line2 | cut -d " " -f 3-)
-                        echo -e "$RESOURCE\t$POLICY\t$RULE_NAME\t$STATUS\t$MESSAGE" >> /tmp/temp.txt
+                        echo -e "$RESOURCE\t$POLICY_NAME\t$RULE_NAME\t$STATUS\t$MESSAGE" >> /tmp/temp.txt
                 fi
         done
 done
