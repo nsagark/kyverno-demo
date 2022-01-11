@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 
-##
+#
 RESOURCE_YAMLS=$(ls resources)
 POLICY_YAMLS=$(ls policies)
 TEMP_FILE=/tmp/temp.txt
