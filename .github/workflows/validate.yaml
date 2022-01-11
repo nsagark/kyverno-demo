@@ -42,6 +42,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install kyverno CLI
         run: |
+          exec bash
           kubectl krew install kyverno     
           kubectl kyverno version
 
