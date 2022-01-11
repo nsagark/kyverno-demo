@@ -44,11 +44,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install kyverno CLI
         run: |
-          echo $USER
-          sudo kubectl krew install kyverno     
-          kubectl kyverno version
+          #sudo kubectl krew install kyverno     
+          kubectl krew
+          #kubectl kyverno version
 
       # Runs a set of commands using the runners shell
       - name: Validate resource YAML files
         run: |
-          sudo ./script.sh
+          #sudo ./script.sh
