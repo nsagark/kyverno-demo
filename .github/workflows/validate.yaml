@@ -44,4 +44,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Validate resource YAML files
         run: |
-          ./script.sh
+          chmod 755 script.sh && sudo ./script.sh
