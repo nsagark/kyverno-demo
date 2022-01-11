@@ -25,6 +25,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install Packages
         run: |
+          wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+          sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz
           echo -e "\nInstalling kubectl for ubuntu\n"
           sudo apt-get update
           sudo apt-get install -y apt-transport-https ca-certificates curl
