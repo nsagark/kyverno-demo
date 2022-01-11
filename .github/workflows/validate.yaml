@@ -23,16 +23,27 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Install kyverno CLI
+      - name: Install Packages
         run: |
-          sudo apt-get install build-essential -y
-          chmod 755 install-kycli-ghactions.sh
-          sudo ./install-kycli-ghactions.sh
+          echo -e "\nInstalling kubectl for ubuntu\n"
+          sudo apt-get update
+          sudo apt-get install -y apt-transport-https ca-certificates curl
+          sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+          echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+          sudo apt-get update
+          sudo apt-get install -y kubectl
+          echo -e "\nInstalling mutt for ubuntu\n"
+          sudo apt-get install mutt -y
+          chmod 755 krew-setup.sh
+          sudo ./krew-setup.sh
+          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+          kubectl krew
           
       # Runs a single command using the runners shell
-      - name: Install mutt
+      - name: Install kyverno CLI
         run: |
-          sudo apt-get install mutt -y          
+          kubectl krew install kyverno     
+          kubectl kyverno version
 
       # Runs a set of commands using the runners shell
       - name: Validate resource YAML files
