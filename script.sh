@@ -53,4 +53,4 @@ print "</TABLE></BODY></HTML>"
 sed -i "5s:TR:TR bgcolor=\"lightblue\":" file.html
 
 EMAIL_BODY="The resource YAML files that have failed to validate against the kyverno policies are included in the attachment. Please take appropriate actions to update the YAML files"
-mutt -s "Pipeline job has failed" -a file.html -- $E_DISTRO <<< "$EMAIL_BODY"
+mutt -s "Pipeline job has failed" -a file.html sagar@nirmata.com <<< "$EMAIL_BODY"
