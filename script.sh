@@ -5,6 +5,7 @@
 RESOURCE_YAMLS=$(ls resources)
 POLICY_YAMLS=$(ls policies)
 TEMP_FILE=/tmp/temp.txt
+E_DISTRO=sagar@nirmata.com
 
 echo -e "RESOURCE\tPOLICY_NAME\tRULE_NAME\tSTATUS\tMESSAGE" > /tmp/temp.txt
 
@@ -50,3 +51,6 @@ print "</TABLE></BODY></HTML>"
 ' /tmp/temp.txt > file.html
 
 sed -i "5s:TR:TR bgcolor=\"lightblue\":" file.html
+
+EMAIL_BODY="The resource YAML files that have failed to validate against the kyverno policies are included in the attachment. Please take appropriate actions to update the YAML files"
+mutt -s "Pipeline job has failed" -a $OUTPUT_FILE -- $E_DISTRO <<< "$EMAIL_BODY"
