@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get install build-essential -y
           chmod 755 install-kycli-ghactions.sh
-          ./install-kycli-ghactions.sh
+          sudo ./install-kycli-ghactions.sh
           
       # Runs a single command using the runners shell
       - name: Install mutt
@@ -37,4 +37,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Validate resource YAML files
         run: |
-          ./script.sh
+          sudo ./script.sh
