@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: aws_ubuntu
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,6 +34,7 @@ jobs:
           sudo apt-get install -y kubectl
           echo -e "\nInstalling mutt for ubuntu\n"
           sudo apt-get install mutt -y
+          sudo apt install mailutils -y
           chmod 755 krew-setup.sh
           sudo ./krew-setup.sh
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
