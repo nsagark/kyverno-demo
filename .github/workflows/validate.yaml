@@ -38,7 +38,7 @@ jobs:
           sudo ./krew-setup.sh
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           kubectl krew
-          sudo kubectl krew install kyverno
+          kubectl krew install kyverno
           kubectl kyverno version
           
       # Runs a single command using the runners shell
