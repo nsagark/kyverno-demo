@@ -26,7 +26,7 @@ jobs:
       - name: Install kyverno CLI
         run: |
           sudo apt-get install build-essential -y
-          chmod 755 install-kycli.sh
+          chmod 755 install-kycli-ghactions.sh
           ./install-kycli-ghactions.sh
           
       # Runs a single command using the runners shell
