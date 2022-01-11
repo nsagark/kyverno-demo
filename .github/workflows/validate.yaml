@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: aws_ubuntu
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,8 +38,8 @@ jobs:
           sudo ./krew-setup.sh
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           kubectl krew
-          exec bash
           sudo kubectl krew install kyverno
+          kubectl kyverno version
           
       # Runs a single command using the runners shell
       - name: Install kyverno CLI
