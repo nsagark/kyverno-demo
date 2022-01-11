@@ -25,6 +25,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install kyverno CLI
         run: |
+          sudo apt-get install build-essential -y
           chmod 755 install-kycli.sh
           ./install-kycli.sh
           
