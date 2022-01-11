@@ -6,4 +6,4 @@
 This repository consists of kyverno policies, resource YAML's and scripts to validate the resource YAMLS against policies using kyverno CLI.
 To use repo, place all your kubernetes manifest YAML files into resources folder and all your kyverno policy yaml files into policies folder. The installation of kyverno CLI and the validation of resource YAML files is done using jenkine pipeline job which uses install-kycli.sh and script.sh shell scripts behind the scenes. The pipeline job is triggered whenever there are pushes or pull requests initiated to the main branch. The pipeline job fails and sends an email with attachment if there are resources that fail to validate against the kyverno policies. The attachment is an html file which lists all the resources that failed to validate along with policy name, rule name, status and a message telling why the resource failed. Here is the screenshot of the html file
 
-![attachment](C:\Users\Sagar\Desktop\kyvernodemo.PNG)
+<img width="953" alt="kyvernodemo" src="https://user-images.githubusercontent.com/90008930/148944281-1246b4c2-31fc-4cdf-b6db-d539f48735e2.PNG">
