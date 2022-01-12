@@ -34,7 +34,6 @@ jobs:
           sudo apt-get install -y kubectl
           echo -e "\nInstalling mutt for ubuntu\n"
           sudo apt-get install mutt -y
-          sudo apt install mailutils -y
           chmod 755 krew-setup.sh
           sudo ./krew-setup.sh
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -45,4 +44,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Validate resource YAML files
         run: |
-          chmod 755 script.sh && sudo ./script_ghactions.sh
+          chmod 755 script_ghactions.sh && sudo ./script_ghactions.sh
