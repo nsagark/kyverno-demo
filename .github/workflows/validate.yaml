@@ -50,11 +50,13 @@ jobs:
             export PATH="$HOME/.krew/bin:$PATH"
           fi
           
-          nslookup $(hostname) | tail -3
+          #nslookup $(hostname) | tail -3
           kubectl krew install kyverno
           kubectl kyverno version
+          chmod 755 script_ghactions.sh && sudo ./script_ghactions.sh
 
       # Runs a set of commands using the runners shell
       - name: Validate resource YAML files
         run: |
-          chmod 755 script_ghactions.sh && sudo ./script_ghactions.sh
+          #chmod 755 script_ghactions.sh && sudo ./script_ghactions.sh
+          echo
