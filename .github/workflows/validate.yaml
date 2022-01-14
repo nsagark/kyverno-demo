@@ -26,6 +26,7 @@ jobs:
       - name: Install Packages
         run: |
           apt-get install build-essential -y >/dev/null 2>&1
+          apt-get install sendmail -y >/dev/null 2>&1
           chmod 755 install-kycli.sh && sudo ./install-kycli.sh >/dev/null 2>&1
           #chmod 755 script_ghactions.sh && sudo ./script_ghactions.sh 
 
