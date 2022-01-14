@@ -25,19 +25,31 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install Packages
         run: |
-          echo -e "\nInstalling kubectl for ubuntu\n"
-          sudo apt-get update
-          sudo apt-get install -y apt-transport-https ca-certificates curl
-          sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-          echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-          sudo apt-get update
-          sudo apt-get install -y kubectl
-          echo -e "\nInstalling mutt for ubuntu\n"
-          sudo apt-get install mutt -y
-          chmod 755 krew-setup.sh
-          sudo ./krew-setup.sh
-          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-          kubectl krew
+          KCTL=$(kubectl version --short 2>&1| grep "Client Version:" | awk '{print $NF}')
+          if [ -z "$KCTL" ]; then
+            echo -e "\nInstalling kubectl for ubuntu\n"
+            sudo apt-get update
+            sudo apt-get install -y apt-transport-https ca-certificates curl
+            sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+            echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+            sudo apt-get update
+            sudo apt-get install -y kubectl
+          fi
+          
+          CHK_MUTT=$(mutt -v | head -1 | awk '{print $2}')
+          echo "MUTT Version: $CHK_MUTT"
+          if [ -z "$CHK_MUTT" ]; then
+            echo -e "\nInstalling mutt for ubuntu\n"
+            sudo apt-get install mutt -y
+          fi
+          
+          KREW=$(kubectl krew version | grep GitTag | awk '{print $NF}')
+          if [ -z $KREW ]; then
+            chmod 755 krew-setup.sh
+            sudo ./krew-setup.sh
+            export PATH="$HOME/.krew/bin:$PATH"
+          fi
+          
           kubectl krew install kyverno
           kubectl kyverno version
 
