@@ -54,4 +54,4 @@ sed -i "5s:TR:TR bgcolor=\"lightblue\":" /tmp/file.html
 
 EMAIL_BODY="The resource YAML files that have failed to validate against the kyverno policies are included in the attachment. Please take appropriate actions to update the YAML files"
 
-mutt -s "Github workflow to validate resource YAMLS" sagar@nirmata.com -a /tmp/file.html <<< "$EMAIL_BODY"
+#mutt -s "Github workflow to validate resource YAMLS" sagar@nirmata.com -a /tmp/file.html <<< "$EMAIL_BODY"
