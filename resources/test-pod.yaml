@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: random
+  namespace: nirmata
+spec:
+  containers:
+  - name: ghost
+    image: ghost
+    securityContext:
+      readOnlyRootFilesystem: false
