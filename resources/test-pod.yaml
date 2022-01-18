@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: newtest
+  name: test
   namespace: nirmata
 spec:
   containers:
